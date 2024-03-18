@@ -1,15 +1,24 @@
-import React from "react";
-import { Box, Flex, Heading, Input, Icon, VStack, Grid, Button, Text, List, ListItem } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Flex, Heading, Input, Icon, VStack, Grid, Button, List, ListItem } from "@chakra-ui/react";
 import { FaPlus, FaBars } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import Findings from "../components/Findings";
 
 const Index = () => {
+  const [findings, setFindings] = useState([]);
+  const navigate = useNavigate();
+
+  const handleGenerateReport = () => {
+    navigate("/report", { state: { findings } });
+  };
+
   return (
     <Flex h="100vh" flexDirection="column">
-      {/* Header */}
+      {}
       <Box bg="lightblue" px={4} py={2}>
         <Flex justify="space-between" align="center">
           <Heading size="lg" textTransform="uppercase" fontWeight="bold">
-            Smartlibrary
+            Radiology Reporting
           </Heading>
           <Flex align="center">
             <Input placeholder="Search..." borderRadius="md" mr={2} />
@@ -18,60 +27,53 @@ const Index = () => {
         </Flex>
       </Box>
 
-      {/* Main Content */}
+      {}
       <Flex flex={1}>
-        {/* Left Sidebar */}
+        {}
         <Box bg="lightblue" w={16} p={4}>
           <VStack spacing={8} align="center">
             <Icon as={FaBars} boxSize={6} />
-            {/* Add more sidebar icons */}
+            {}
           </VStack>
         </Box>
 
-        {/* Content Columns */}
+        {}
         <Flex flex={1}>
-          {/* Left Column */}
+          {}
           <Box bg="white" w="30%" p={4}>
             <VStack spacing={8} align="stretch">
               <Box borderWidth={1} borderColor="lightblue" p={4}>
                 <Heading size="md" mb={2}>
-                  Radiology Reporting
+                  Neuroradiology
                 </Heading>
                 <List>
-                  <ListItem>Item 1</ListItem>
-                  <ListItem>Item 2</ListItem>
-                  {/* Add more list items */}
+                  <ListItem>CT Brain</ListItem>
+                  <ListItem>MRI Brain</ListItem>
+                  {}
                 </List>
               </Box>
               <Box borderWidth={1} borderColor="lightblue" p={4}>
                 <Heading size="md" mb={2}>
-                  Pathology Cancer Reporting
+                  Musculoskeletal
                 </Heading>
                 <List>
-                  <ListItem>Item 1</ListItem>
-                  <ListItem>Item 2</ListItem>
-                  {/* Add more list items */}
+                  <ListItem>X-Ray Knee</ListItem>
+                  <ListItem>MRI Shoulder</ListItem>
+                  {}
                 </List>
               </Box>
             </VStack>
           </Box>
 
-          {/* Right Column */}
+          {}
           <Box bg="paleblue" flex={1} p={4}>
             <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-              {/* Category Box */}
-              <Box borderWidth={1} borderColor="lightblue" p={4}>
-                <Heading size="md">Neuroradiology</Heading>
-                <List>
-                  <ListItem>CT Traumatic Brain Injury</ListItem>
-                  {/* Add more list items */}
-                </List>
-                <Button size="sm" colorScheme="blue" mt={4} alignSelf="flex-end">
-                  &gt; OPEN
-                </Button>
-              </Box>
-              {/* Add more category boxes */}
+              {}
+              <Findings findings={findings} setFindings={setFindings} />
             </Grid>
+            <Button colorScheme="blue" onClick={handleGenerateReport} mt={4}>
+              Generate Report
+            </Button>
           </Box>
         </Flex>
       </Flex>
